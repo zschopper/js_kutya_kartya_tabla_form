@@ -122,6 +122,17 @@ article {
   padding: 5px 15px;
 }
 
+footer {
+    text-align: center;
+    padding: 10px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+/****** RESPONSIBILITY ******/
+
 @media (min-width: 600px) {
   h1::after {
     content: "600+";

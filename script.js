@@ -14,6 +14,7 @@ let lista = [
 
 let kartyakElement;
 let tablaElement;
+let counter = 0;
 
 function init(event) {
     console.log("init");
@@ -21,6 +22,13 @@ function init(event) {
     kartyakElement = document.querySelector("#cards")
     tablaElement = document.querySelector("#table table tbody")
     kirajzol_mind();
+}
+
+function torol_click(idx, nev) {
+    if(confirm(`Valóban törlöd ${nev} kutyát?`)) {
+        document.querySelector('#card-' + idx).remove();
+        document.querySelector('#row-' + idx).remove();
+    }
 }
 
 function kirajzol_mind() {
@@ -32,27 +40,31 @@ function kirajzol_mind() {
 function kirajzol(kutya) {
     kartyat_hozzaad(kutya, kartyakElement);
     tablasort_hozzaad(kutya, tablaElement);
+    counter++;
 }
 
 function kartyat_hozzaad(kutya, szuloElem) {
     let divElem = document.createElement('div');
+    divElem.id = `card-${counter}`;
     divElem.innerHTML =
-    `<div class="nev"><label>Név:</label> <span class="value">${kutya['nev']}</span></div>` +
-    `<div class="kor"><label>Kor:</label> <span class="value">${kutya['kor']}</span></div>` +
-    `<div class="nem"><label>Nem:</label> <span class="value">${kutya['nem']}</span></div>` +
-    `<div><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></div>` +
-    '<div><button value="töröl">Töröl</button></div>';
+        `<div class="nev"><label>Név:</label> <span class="value">${kutya['nev']}</span></div>` +
+        `<div class="kor"><label>Kor:</label> <span class="value">${kutya['kor']}</span></div>` +
+        `<div class="nem"><label>Nem:</label> <span class="value">${kutya['nem']}</span></div>` +
+        `<div><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></div>` +
+        `<div><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></div>`;
+
     szuloElem.appendChild(divElem);
 }
 
 function tablasort_hozzaad(kutya, szuloElem) {
     let trElem = document.createElement('tr');
+    trElem.id = `row-${counter}`;
     trElem.innerHTML =
+        `<td><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></td>` +
+        `<td class="nev">${kutya['nev']}</td>` +
+        `<td class="kor">${kutya['kor']}</td>` +
+        `<td class="nem">${kutya['nem']}</td>` +
+        `<td><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></td>`;
 
-    `<td><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></td>` +
-`<td class="nev">${kutya['nev']}</td>` +
-`<td class="kor">${kutya['kor']}</td>` +
-`<td class="nem">${kutya['nem']}</td>` +
-'<td><button value="töröl">Töröl</button></td>';
-szuloElem.appendChild(trElem);
+    szuloElem.appendChild(trElem);
 }
