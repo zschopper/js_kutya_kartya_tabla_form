@@ -175,6 +175,13 @@ form button {
   width: 100%;
 }
 
+.fa-venus  {
+    color: #ff7189;
+}
+
+.fa-mars {
+    color: rgb(72, 193, 193);
+}
 footer {
   text-align: center;
   padding: 10px;

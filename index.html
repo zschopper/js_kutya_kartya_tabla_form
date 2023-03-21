@@ -36,11 +36,11 @@
             <div id="form">
                 <h2>Form</h2>
                 <form>
-                    <fieldset><label for="nev">Név:</label><input name="nev" type="text"></fieldset>
-                    <fieldset><label for="kor">Kor:</label><input name="kor" type="text"></fieldset>
-                    <fieldset><label for="nem">Nem:</label><input name="nem" type="text"></fieldset>
-                    <fieldset><label for="kep">Kép (url):</label><input name="kep" type="text"></fieldset>
-                    <button type="submit">Rögzít</button>
+                    <fieldset><label for="nev">Név:</label><input id="field-nev" name="nev" type="text"></fieldset>
+                    <fieldset><label for="kor">Kor:</label><input id="field-kor" name="kor" type="number"></fieldset>
+                    <fieldset><label for="nem">Nem:</label><input id="field-nem" name="nem" type="text"></fieldset>
+                    <fieldset><label for="kep">Kép (url):</label><input id="field-kep" name="kep" type="url"></fieldset>
+                    <button type="button" onclick="form_bekuld()">Rögzít</button>
                 </form>
             </div>
         </article>

@@ -46,10 +46,20 @@ function kirajzol(kutya) {
 function kartyat_hozzaad(kutya, szuloElem) {
     let divElem = document.createElement('div');
     divElem.id = `card-${counter}`;
+    let nemIkon = "";
+    if (kutya['nem'] == "szuka") {
+        nemIkon = "fa-solid fa-venus"
+        // <i class="fa-solid fa-venus"></i>
+
+    } else if (kutya['nem'] == "kan") {
+        nemIkon = "fa-solid fa-mars"
+        // <i class="fa-solid fa-mars"></i>
+    }
+
     divElem.innerHTML =
         `<div class="nev"><label>Név:</label> <span class="value">${kutya['nev']}</span></div>` +
         `<div class="kor"><label>Kor:</label> <span class="value">${kutya['kor']}</span></div>` +
-        `<div class="nem"><label>Nem:</label> <span class="value">${kutya['nem']}</span></div>` +
+        `<div class="nem"><label>Nem:</label> <span class="value"><i class="${nemIkon}"></i> ${kutya['nem']}</span></div>` +
         `<div><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></div>` +
         `<div><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></div>`;
 
@@ -59,12 +69,41 @@ function kartyat_hozzaad(kutya, szuloElem) {
 function tablasort_hozzaad(kutya, szuloElem) {
     let trElem = document.createElement('tr');
     trElem.id = `row-${counter}`;
+    if (kutya['nem'] == "szuka") {
+        nemIkon = "fa-solid fa-venus"
+    } else if (kutya['nem'] == "kan") {
+        nemIkon = "fa-solid fa-mars"
+    }
     trElem.innerHTML =
         `<td><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></td>` +
         `<td class="nev">${kutya['nev']}</td>` +
         `<td class="kor">${kutya['kor']}</td>` +
-        `<td class="nem">${kutya['nem']}</td>` +
+        `<td class="nem"><i class="${nemIkon}"></i>  ${kutya['nem']}</td>` +
         `<td><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></td>`;
 
     szuloElem.appendChild(trElem);
+}
+
+function form_bekuld(event) {
+    let nevElem = document.querySelector("#field-nev");
+    let korElem = document.querySelector("#field-kor");
+    let nemElem = document.querySelector("#field-nem");
+    let kepElem = document.querySelector("#field-kep");
+
+    let nev = nevElem.value;
+    let kor = korElem.value;
+    let nem = nemElem.value;
+    let kep = kepElem.value;
+
+    if (nev.trim() == "") {
+        alert("A név nem lehet üres!")
+        nevElem.focus();
+    } else if (kor.trim() == "") {
+        alert("A kor nem lehet üres!")
+        korElem.focus();
+    } else     if (nem.trim() == "") {
+        alert("A nem nem lehet üres!")
+        nemElem.focus();
+    }
+
 }
