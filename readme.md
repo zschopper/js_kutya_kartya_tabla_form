@@ -9,3 +9,13 @@ Hozz létre egy űrlap - statikusan. Ahol bekérjük a kutyák adatait. A bekér
 GitHub Pages linket kérek!
 
 [GitHub Pages](https://zschopper.github.io/js_kutya_kartya_tabla_form)
+
+## Todo
+
+- Törlés gombok eseményei
+- Adatfelvitel
+  - Form
+  - Elem hozzáadás a listához
+  - Kártyák/táblázat frissítése
+- Rendezés
+  - Felvitelnél rendezett beszúrás
