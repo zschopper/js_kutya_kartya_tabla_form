@@ -16,7 +16,7 @@ GitHub Pages linket kérek!
 
 ## Todo
 
-- Törlés gombok eseményei
+- ~~Törlés gombok eseményei~~
 - Adatfelvitel
   - Form
   - Elem hozzáadás a listához
