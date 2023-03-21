@@ -9,6 +9,7 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main>
         <h1>zschopper - JS kutyák</h1>
@@ -16,9 +17,9 @@
             <h2>Kártyák</h2>
             <div id="cards"></div>
         </article>
-        <article>
-            <h2>Táblázat</h2>
+        <article id="table-n-form">
             <div id="table">
+                <h2>Táblázat</h2>
                 <table>
                     <thead>
                         <tr>
@@ -31,18 +32,21 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-
+            </div>
+            <div id="form">
+                <h2>Form</h2>
+                <form>
+                    <fieldset><label for="nev">Név:</label><input name="nev" type="text"></fieldset>
+                    <fieldset><label for="kor">Kor:</label><input name="kor" type="text"></fieldset>
+                    <fieldset><label for="nem">Nem:</label><input name="nem" type="text"></fieldset>
+                    <fieldset><label for="kep">Kép (url):</label><input name="kep" type="text"></fieldset>
+                    <button type="submit">Rögzít</button>
+                </form>
             </div>
         </article>
-        <article>
-            <h2>Form</h2>
-            <form id="form">
-
-            </form>
-
-        </article>
         <footer>
-            <a href="https://github.com/zschopper/js_kutya_kartya_tabla_form.git" target="_blank">Copyright&copy; 2023 zschopper - Minden jog fenntartva.</a>
+            <a href="https://github.com/zschopper/js_kutya_kartya_tabla_form.git" target="_blank">Copyright&copy; 2023
+                zschopper - Minden jog fenntartva.</a>
         </footer>
     </main>
 </body>

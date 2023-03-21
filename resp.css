@@ -1,0 +1,62 @@
+@media (min-width: 600px) {
+  h1::after {
+    content: "600+";
+  }
+  :root {
+    --flex-items: 2;
+    --flex-gap: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  h1::after {
+    content: "900+";
+  }
+  :root {
+    --flex-items: 3;
+    --flex-gap: 10px;
+  }
+}
+@media (min-width: 1200px) {
+  h1::after {
+    content: "1200+";
+    font-size: 10px;
+    color: #00000010;
+  }
+  :root {
+    --flex-items: 4;
+    --flex-gap: 10px;
+  }
+}
+@media (min-width: 1500px) {
+  h1::after {
+    content: "1500+";
+  }
+
+  :root {
+    --flex-items: 5;
+    --flex-gap: 10px;
+  }
+}
+
+@media (min-width: 1800px) {
+  h1::after {
+    content: "1800+";
+  }
+
+  :root {
+    --flex-items: 6;
+    --flex-gap: 10px;
+  }
+}
+
+@media (min-width: 2100px) {
+  h1::after {
+    content: "2100+";
+  }
+
+  :root {
+    --flex-items: 7;
+    --flex-gap: 10px;
+  }
+}

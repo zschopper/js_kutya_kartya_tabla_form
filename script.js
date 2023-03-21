@@ -1,15 +1,15 @@
 window.addEventListener("load", init);
 
 let lista = [
-    { nev: "Füge", kor: 5, nem: "kan", kep: "https://placedog.net/230"},
-    { nev: "Fickó", kor: 4, nem: "kan", kep: "https://placedog.net/150"},
-    { nev: "Lola", kor: 1, nem: "szuka", kep: "https://placedog.net/80"},
-    { nev: "Atticus", kor: 5, nem: "kan", kep: "https://placedog.net/250"},
-    { nev: "Bingó", kor: 6, nem: "kan", kep: "https://placedog.net/120"},
-    { nev: "Milka", kor: 2, nem: "szuka", kep: "https://placedog.net/97"},
-    { nev: "Brutus", kor: 3, nem: "kan", kep: "https://placedog.net/210"},
-    { nev: "Pamacs", kor: 1, nem: "szuka", kep: "https://placedog.net/182"},
-    { nev: "Póker", kor: 2, nem: "kan", kep: "https://placedog.net/236"},
+    { nev: "Füge", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/230"},
+    { nev: "Fickó", kor: 4, nem: "kan", kep: "https://placedog.net/500/500/150"},
+    { nev: "Lola", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/80"},
+    { nev: "Atticus", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/250"},
+    { nev: "Bingó", kor: 6, nem: "kan", kep: "https://placedog.net/500/500/120"},
+    { nev: "Milka", kor: 2, nem: "szuka", kep: "https://placedog.net/500/500/97"},
+    { nev: "Brutus", kor: 3, nem: "kan", kep: "https://placedog.net/500/500/210"},
+    { nev: "Pamacs", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/182"},
+    { nev: "Póker", kor: 2, nem: "kan", kep: "https://placedog.net/500/500/236"},
 ]
 
 let kartyakElement;
