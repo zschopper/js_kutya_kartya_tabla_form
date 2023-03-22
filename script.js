@@ -1,15 +1,15 @@
 window.addEventListener("load", init);
 
 let lista = [
-    { nev: "Füge", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/230"},
-    { nev: "Fickó", kor: 4, nem: "kan", kep: "https://placedog.net/500/500/150"},
-    { nev: "Lola", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/80"},
-    { nev: "Atticus", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/250"},
-    { nev: "Bingó", kor: 6, nem: "kan", kep: "https://placedog.net/500/500/120"},
-    { nev: "Milka", kor: 2, nem: "szuka", kep: "https://placedog.net/500/500/97"},
-    { nev: "Brutus", kor: 3, nem: "kan", kep: "https://placedog.net/500/500/210"},
-    { nev: "Pamacs", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/182"},
-    { nev: "Póker", kor: 2, nem: "kan", kep: "https://placedog.net/500/500/236"},
+    { nev: "Füge", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/230" },
+    { nev: "Fickó", kor: 4, nem: "kan", kep: "https://placedog.net/500/500/150" },
+    { nev: "Lola", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/80" },
+    { nev: "Atticus", kor: 5, nem: "kan", kep: "https://placedog.net/500/500/250" },
+    { nev: "Bingó", kor: 6, nem: "kan", kep: "https://placedog.net/500/500/120" },
+    { nev: "Milka", kor: 2, nem: "szuka", kep: "https://placedog.net/500/500/97" },
+    { nev: "Brutus", kor: 3, nem: "kan", kep: "https://placedog.net/500/500/210" },
+    { nev: "Pamacs", kor: 1, nem: "szuka", kep: "https://placedog.net/500/500/182" },
+    { nev: "Póker", kor: 2, nem: "kan", kep: "https://placedog.net/500/500/236" },
 ]
 
 let kartyakElement;
@@ -25,7 +25,7 @@ function init(event) {
 }
 
 function torol_click(idx, nev) {
-    if(confirm(`Valóban törlöd ${nev} kutyát?`)) {
+    if (confirm(`Valóban törlöd ${nev} kutyát?`)) {
         document.querySelector('#card-' + idx).remove();
         document.querySelector('#row-' + idx).remove();
     }
@@ -49,11 +49,8 @@ function kartyat_hozzaad(kutya, szuloElem) {
     let nemIkon = "";
     if (kutya['nem'] == "szuka") {
         nemIkon = "fa-solid fa-venus"
-        // <i class="fa-solid fa-venus"></i>
-
     } else if (kutya['nem'] == "kan") {
         nemIkon = "fa-solid fa-mars"
-        // <i class="fa-solid fa-mars"></i>
     }
 
     divElem.innerHTML =
@@ -87,23 +84,44 @@ function tablasort_hozzaad(kutya, szuloElem) {
 function form_bekuld(event) {
     let nevElem = document.querySelector("#field-nev");
     let korElem = document.querySelector("#field-kor");
-    let nemElem = document.querySelector("#field-nem");
+    let nemSzukaElem = document.querySelector("#field-nem-szuka");
+    let nemKanElem = document.querySelector("#field-nem-kan");
     let kepElem = document.querySelector("#field-kep");
 
     let nev = nevElem.value;
     let kor = korElem.value;
-    let nem = nemElem.value;
+    let nem = "";
     let kep = kepElem.value;
 
     if (nev.trim() == "") {
-        alert("A név nem lehet üres!")
+        alert("A név nem lehet üres!");
         nevElem.focus();
     } else if (kor.trim() == "") {
-        alert("A kor nem lehet üres!")
+        alert("A kor nem lehet üres!");
         korElem.focus();
-    } else     if (nem.trim() == "") {
-        alert("A nem nem lehet üres!")
-        nemElem.focus();
-    }
+    } else if (!nemSzukaElem.checked && !nemKanElem.checked) {
+        alert("A kutya nemét ki kell választani!");
+        nemSzukaElem.focus();
+    } else {
+        if (nemSzukaElem.checked) {
+            nem = "szuka";
+        } else if (nemKanElem.checked) {
+            nem = "kan";
+        }
 
+        let szam = 0;
+        if (kep.trim() == "") {
+            szam = parseInt(Math.random() * 1000);
+        } else if (/^\d+$/.test(kep)) {
+            szam = parseInt(kep);
+        }
+        if (szam > 0) {
+            kep = "https://placedog.net/500/500/" + szam;
+        }
+        let kutya = { nev: nev, kor: kor, nem: nem, kep: kep };
+        lista.push(kutya);
+        kirajzol(kutya);
+    }
 }
+
+

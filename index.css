@@ -144,7 +144,7 @@ form {
   padding: 10px;
 }
 
-form label {
+form label.aligned {
   width: 100px;
   display: inline-block;
   text-align: right;
@@ -152,10 +152,14 @@ form label {
   /* border: 1px solid green; */
 }
 
-form input {
+form input[type="text"],
+form input[type="url"],
+form input[type="number"],
+div.input-container {
   padding: 3px;
-  width: calc(100% - 100px);
+  width: calc(100% - 110px);
   /* border: 1px solid red; */
+  display: inline-block;
 }
 
 fieldset {
