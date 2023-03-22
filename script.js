@@ -12,9 +12,14 @@ let lista = [
     { nev: "Póker", kor: 2, nem: "kan", kep: "https://placedog.net/500/500/236" },
 ]
 
+const SORT_ASC_CLASS = "fa-sort-up";
+const SORT_DESC_CLASS = "fa-sort-down";
+
 let kartyakElement;
 let tablaElement;
 let counter = 0;
+let sortCol = -1;
+let sortDir = 0;
 
 function init(event) {
     console.log("init");
@@ -22,6 +27,9 @@ function init(event) {
     kartyakElement = document.querySelector("#cards")
     tablaElement = document.querySelector("#table table tbody")
     kirajzol_mind();
+    for (const th of document.querySelectorAll("table thead th")) {
+        th.addEventListener("click", th_click);
+    }
 }
 
 function torol_click(idx, nev) {
@@ -124,4 +132,66 @@ function form_bekuld(event) {
     }
 }
 
+function th_click(event) {
+    let parent = event.target.parentNode;
+    let target = event.target;
+    // hányadik oszlopra kattintottunk (0-tól számolódik)
+    let idx = Array.prototype.indexOf.call(parent.children, event.target);
 
+    // csak "név", "kor" és a "nem" rendezhető
+    if (![1, 2, 3].includes(idx)) {
+        return;
+    }
+
+    if (sortCol >= 0) { // már rendeztünk korábban, töröljük a rendezést jelző osztályt
+        let elem = parent.children[sortCol].querySelector("i")
+        elem.classList.remove(SORT_ASC_CLASS);
+        elem.classList.remove(SORT_DESC_CLASS);
+    }
+
+
+    if (idx == sortCol) { // ha már a rendezett oszlopra kattintunk, csak a rendezés irányát változtatjuk
+        sortDir *= -1;
+    } else { // rendezés másik oszlopra
+        sortCol = idx;
+        sortDir = 1;
+    }
+
+    let elem = target.querySelector("i") // az <th>-n belüli <i> elem osztályai jelzik a rendezést
+    if (sortDir == 1) {
+        elem.classList.add(SORT_ASC_CLASS);
+        elem.classList.remove(SORT_DESC_CLASS);
+    } else {
+        elem.classList.remove(SORT_ASC_CLASS);
+        elem.classList.add(SORT_DESC_CLASS);
+    }
+
+    console.log({ idx: idx, col: sortCol, dir: sortDir });
+
+    let rows = Array.prototype.slice.call(document.querySelectorAll("tbody tr"), 0);
+    let tbody = document.querySelector("tbody");
+    for (const row of rows.sort(cmp)) {
+        tbody.appendChild(row);
+    }
+}
+
+function cmp(r1, r2) {
+    let v1;
+    let v2;
+
+    switch (sortCol) {
+        case 1: // név
+            v1 = r1.childNodes[sortCol].textContent;
+            v2 = r2.childNodes[sortCol].textContent;
+            return v1.localeCompare(v2) * sortDir;
+        case 2: // kor
+            v1 = parseInt(r1.childNodes[sortCol].textContent);
+            v2 = parseInt(r2.childNodes[sortCol].textContent);
+            return (v1 - v2) * sortDir;
+        case 3: // nem
+            v1 = r1.childNodes[sortCol].textContent;
+            v2 = r2.childNodes[sortCol].textContent;
+            return v1.localeCompare(v2) * -1 * sortDir;
+    }
+    return 1;
+}

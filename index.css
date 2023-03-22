@@ -89,6 +89,10 @@ article {
   background-color: burlywood;
 }
 
+#table table thead th i {
+  float: right; 
+}
+
 #table table td {
   border: 1px solid silver;
   padding: 0 20px;

@@ -22,4 +22,6 @@ GitHub Pages linket kérek!
   - ~~Elem hozzáadás a listához~~
   - ~~Kártyák/táblázat frissítése~~
 - Rendezés
+  - ~~Eddig rögzített táblasorok rendezése~~
   - Felvitelnél rendezett beszúrás
+
