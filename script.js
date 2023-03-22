@@ -165,11 +165,15 @@ function th_click(event) {
         elem.classList.remove(SORT_ASC_CLASS);
         elem.classList.add(SORT_DESC_CLASS);
     }
+    rendez();
+}
 
-    console.log({ idx: idx, col: sortCol, dir: sortDir });
-
-    let rows = Array.prototype.slice.call(document.querySelectorAll("tbody tr"), 0);
+function rendez() {
     let tbody = document.querySelector("tbody");
+    // betesszük a tbody gyerekeit (a sorokat - tr elemek)) egy tömbbe
+    let rows = Array.prototype.slice.call(tbody.childNodes, 0);
+    // a rendezett elemeket újra a tbody-hoz adjuk,
+    // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek
     for (const row of rows.sort(sor_osszehasonlitas)) {
         tbody.appendChild(row);
     }
