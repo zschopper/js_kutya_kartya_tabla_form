@@ -170,27 +170,21 @@ function th_click(event) {
 
     let rows = Array.prototype.slice.call(document.querySelectorAll("tbody tr"), 0);
     let tbody = document.querySelector("tbody");
-    for (const row of rows.sort(cmp)) {
+    for (const row of rows.sort(sor_osszehasonlitas)) {
         tbody.appendChild(row);
     }
 }
 
-function cmp(r1, r2) {
-    let v1;
-    let v2;
+function sor_osszehasonlitas(r1, r2) {
+    let v1 = r1.childNodes[sortCol].textContent;
+    let v2 = r2.childNodes[sortCol].textContent;
 
     switch (sortCol) {
         case 1: // név
-            v1 = r1.childNodes[sortCol].textContent;
-            v2 = r2.childNodes[sortCol].textContent;
             return v1.localeCompare(v2) * sortDir;
         case 2: // kor
-            v1 = parseInt(r1.childNodes[sortCol].textContent);
-            v2 = parseInt(r2.childNodes[sortCol].textContent);
-            return (v1 - v2) * sortDir;
+            return (parseInt(v1) - parseInt(v2)) * sortDir;
         case 3: // nem
-            v1 = r1.childNodes[sortCol].textContent;
-            v2 = r2.childNodes[sortCol].textContent;
             return v1.localeCompare(v2) * -1 * sortDir;
     }
     return 1;

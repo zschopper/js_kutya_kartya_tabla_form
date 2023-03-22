@@ -24,4 +24,3 @@ GitHub Pages linket kérek!
 - Rendezés
   - ~~Eddig rögzített táblasorok rendezése~~
   - Felvitelnél rendezett beszúrás
-
