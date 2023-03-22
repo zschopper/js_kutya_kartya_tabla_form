@@ -26,32 +26,32 @@ function init(event) {
 
     kartyakElement = document.querySelector("#cards")
     tablaElement = document.querySelector("#table table tbody")
-    kirajzol_mind();
+    kirajzolMindent();
     for (const th of document.querySelectorAll("table thead th")) {
-        th.addEventListener("click", th_click);
+        th.addEventListener("click", thClick);
     }
 }
 
-function torol_click(idx, nev) {
+function torolClick(idx, nev) {
     if (confirm(`Valóban törlöd ${nev} kutyát?`)) {
         document.querySelector('#card-' + idx).remove();
         document.querySelector('#row-' + idx).remove();
     }
 }
 
-function kirajzol_mind() {
+function kirajzolMindent() {
     for (const kutya of lista) {
         kirajzol(kutya);
     }
 }
 
 function kirajzol(kutya) {
-    kartyat_hozzaad(kutya, kartyakElement);
-    tablasort_hozzaad(kutya, tablaElement);
+    kartyatHozzaad(kutya, kartyakElement);
+    tablaSortHozzaad(kutya, tablaElement);
     counter++;
 }
 
-function kartyat_hozzaad(kutya, szuloElem) {
+function kartyatHozzaad(kutya, szuloElem) {
     let divElem = document.createElement('div');
     divElem.id = `card-${counter}`;
     let nemIkon = "";
@@ -66,12 +66,12 @@ function kartyat_hozzaad(kutya, szuloElem) {
         `<div class="kor"><label>Kor:</label> <span class="value">${kutya['kor']}</span></div>` +
         `<div class="nem"><label>Nem:</label> <span class="value"><i class="${nemIkon}"></i> ${kutya['nem']}</span></div>` +
         `<div><img src="${kutya['kep']}" alt="${kutya['nev']} képe"></div>` +
-        `<div><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></div>`;
+        `<div><button value="töröl" onclick="torolClick(${counter}, '${kutya['nev']}');">Töröl</button></div>`;
 
     szuloElem.appendChild(divElem);
 }
 
-function tablasort_hozzaad(kutya, szuloElem) {
+function tablaSortHozzaad(kutya, szuloElem) {
     let trElem = document.createElement('tr');
     trElem.id = `row-${counter}`;
     if (kutya['nem'] == "szuka") {
@@ -84,12 +84,12 @@ function tablasort_hozzaad(kutya, szuloElem) {
         `<td class="nev">${kutya['nev']}</td>` +
         `<td class="kor">${kutya['kor']}</td>` +
         `<td class="nem"><i class="${nemIkon}"></i>  ${kutya['nem']}</td>` +
-        `<td><button value="töröl" onclick="torol_click(${counter}, '${kutya['nev']}');">Töröl</button></td>`;
+        `<td><button value="töröl" onclick="torolClick(${counter}, '${kutya['nev']}');">Töröl</button></td>`;
 
     szuloElem.appendChild(trElem);
 }
 
-function form_bekuld(event) {
+function formBekuld(event) {
     let nevElem = document.querySelector("#field-nev");
     let korElem = document.querySelector("#field-kor");
     let nemSzukaElem = document.querySelector("#field-nem-szuka");
@@ -127,12 +127,12 @@ function form_bekuld(event) {
             kep = "https://placedog.net/500/500/" + szam;
         }
         let kutya = { nev: nev, kor: kor, nem: nem, kep: kep };
-        lista.push(kutya);
+        // lista.push(kutya);
         kirajzol(kutya);
     }
 }
 
-function th_click(event) {
+function thClick(event) {
     let parent = event.target.parentNode;
     let target = event.target;
     // hányadik oszlopra kattintottunk (0-tól számolódik)
@@ -174,12 +174,12 @@ function rendez() {
     let rows = Array.prototype.slice.call(tbody.childNodes, 0);
     // a rendezett elemeket újra a tbody-hoz adjuk,
     // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek
-    for (const row of rows.sort(sor_osszehasonlitas)) {
+    for (const row of rows.sort(sorOsszehasonlitas)) {
         tbody.appendChild(row);
     }
 }
 
-function sor_osszehasonlitas(r1, r2) {
+function sorOsszehasonlitas(r1, r2) {
     let v1 = r1.childNodes[sortCol].textContent;
     let v2 = r2.childNodes[sortCol].textContent;
 
