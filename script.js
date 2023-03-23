@@ -17,8 +17,15 @@ const SORT_DESC_CLASS = "fa-sort-down";
 
 let kartyakElement;
 let tablaElement;
+
+// A számláló (counter) minden kutya hozzáadásánál növekszik,
+// egyedi sorszámot generálva az tábla sornak/kártyának.
 let counter = 0;
+
+// A rendezés oszlop-indexe. -1, ha nincs rendezés.
 let sortCol = -1;
+
+// rendezés iránya: 1 ha növekvő a sorrend, -1 ha csökkenő
 let sortDir = 0;
 
 function init(event) {
@@ -132,32 +139,43 @@ function formBekuld(event) {
     }
 }
 
+/**
+ *
+ * @param {*} event
+ * @returns
+ */
 function thClick(event) {
-    let parent = event.target.parentNode;
     let target = event.target;
+    let parent = target.parentNode;
+
     // hányadik oszlopra kattintottunk (0-tól számolódik)
-    let idx = Array.prototype.indexOf.call(parent.children, event.target);
+    let idx = Array.prototype.indexOf.call(parent.children, target);
 
     // csak "név", "kor" és a "nem" rendezhető
     if (![1, 2, 3].includes(idx)) {
         return;
     }
 
-    if (sortCol >= 0) { // már rendeztünk korábban, töröljük a rendezést jelző osztályt
+    if (sortCol >= 0) {
+        // már rendeztünk korábban, töröljük a rendezést jelző osztályt az EREDETI oszlop <i> tag-jéről
         let elem = parent.children[sortCol].querySelector("i")
         elem.classList.remove(SORT_ASC_CLASS);
         elem.classList.remove(SORT_DESC_CLASS);
     }
 
 
-    if (idx == sortCol) { // ha már a rendezett oszlopra kattintunk, csak a rendezés irányát változtatjuk
+    if (idx == sortCol) {
+        // ha a már rendezett oszlopra kattintunk, a rendezés irányát megfordítjuk
         sortDir *= -1;
-    } else { // rendezés másik oszlopra
+    } else {
+        // ha nem rendezett oszlopra kattintottunk, a rendezési beállításokat tartalmazó
+        // változókat átállítjuk a másik oszlopra
         sortCol = idx;
         sortDir = 1;
     }
 
-    let elem = target.querySelector("i") // az <th>-n belüli <i> elem osztályai jelzik a rendezést
+    // Itt az ÚJONNAN beállított rendezés szerint átállítjuk a rendezettség jelző nyilakat.
+    let elem = target.querySelector("i")
     if (sortDir == 1) {
         elem.classList.add(SORT_ASC_CLASS);
         elem.classList.remove(SORT_DESC_CLASS);
@@ -171,25 +189,34 @@ function thClick(event) {
 function rendez() {
     let tbody = document.querySelector("tbody");
     // betesszük a tbody gyerekeit (a sorokat - tr elemek)) egy tömbbe
+
     let rows = Array.prototype.slice.call(tbody.childNodes, 0);
     // a rendezett elemeket újra a tbody-hoz adjuk,
     // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek
-    for (const row of rows.sort(sorOsszehasonlitas)) {
-        tbody.appendChild(row);
-    }
-}
 
-function sorOsszehasonlitas(r1, r2) {
-    let v1 = r1.childNodes[sortCol].textContent;
-    let v2 = r2.childNodes[sortCol].textContent;
+    // for (const row of rows.sort(sorOsszehasonlitas)) {
+    //     tbody.appendChild(row);
+    // }
 
-    switch (sortCol) {
-        case 1: // név
-            return v1.localeCompare(v2) * sortDir;
-        case 2: // kor
-            return (parseInt(v1) - parseInt(v2)) * sortDir;
-        case 3: // nem
-            return v1.localeCompare(v2) * -1 * sortDir;
-    }
-    return 1;
+    rows.sort((r1, r2) => {
+        // v1 és v2 az összehasonlítandó cellák egyszerű szöveges tartalma (textContent)
+        let v1 = r1.childNodes[sortCol].textContent;
+        let v2 = r2.childNodes[sortCol].textContent;
+
+        switch (sortCol) {
+            case 1: // név - szövegként rendezzük
+                return v1.localeCompare(v2) * sortDir;
+            case 2: // kor - számként rendezzük
+                return (parseInt(v1) - parseInt(v2)) * sortDir;
+            case 3: // nem - szövegként, de fordítottan rendezzük (szuka előre)
+                return v1.localeCompare(v2) * -1 * sortDir;
+            default:
+                // mivel fent kezeljük, hogy csak az 1-3 oszlopokat rendezhetik,
+                // ezért ide elvileg nem futhat a vezérlés, de önvédelemként jó,
+                // ha nem hagyunk nyilvánvaló lyukat. Egy fv. MINDIG térjen vissza
+                // valami eredménnyel.
+                return 1;
+        }
+
+    }).map((row) => {tbody.appendChild(row)});
 }
