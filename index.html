@@ -11,61 +11,65 @@
 </head>
 
 <body>
-    <main>
-        <h1>zschopper - JS kutyák</h1>
-        <article>
-            <h2>Kártyák</h2>
-            <div id="cards"></div>
-        </article>
-        <article id="table-n-form">
-            <div id="table">
-                <h2>Táblázat</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Kép<i class="fa-solid"></i></th>
-                            <th>Név<i class="fa-solid"></i></th>
-                            <th>Kor<i class="fa-solid"></i></th>
-                            <th>Nem<i class="fa-solid"></i></th>
-                            <th>Műveletek<i class="fa-solid"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-            <div id="form">
-                <h2>Form</h2>
-                <form>
-                    <fieldset>
-                        <label class="aligned" for="nev">Név:</label><input id="field-nev" name="nev" type="text">
-                    </fieldset>
-                    <fieldset>
-                        <label class="aligned" for="kor">Kor:</label><input id="field-kor" name="kor" type="number">
-                    </fieldset>
-                    <fieldset><label class="aligned" for="nem">Nem:</label>
-                        <div class="input-container">
-                            <div>
-                                <input id="field-nem-szuka" name="nem" type="radio" value="szuka">
-                                <label for="field-nem-szuka"><i class="fa-solid fa-venus"></i>szuka</label>
+    <div class="body-wrap">
+        <main>
+            <h1>zschopper - JS kutyák</h1>
+            <article>
+                <h2>Kártyák</h2>
+                <div id="cards"></div>
+            </article>
+            <article id="table-n-form">
+                <div id="table-container">
+                    <h2>Táblázat</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kép<i class="fa-solid"></i></th>
+                                    <th>Név<i class="fa-solid"></i></th>
+                                    <th>Kor<i class="fa-solid"></i></th>
+                                    <th>Nem<i class="fa-solid"></i></th>
+                                    <th>Műveletek<i class="fa-solid"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="form">
+                    <h2>Form</h2>
+                    <form>
+                        <fieldset>
+                            <label class="aligned" for="nev">Név:</label><input id="field-nev" name="nev" type="text">
+                        </fieldset>
+                        <fieldset>
+                            <label class="aligned" for="kor">Kor:</label><input id="field-kor" name="kor" type="number">
+                        </fieldset>
+                        <fieldset><label class="aligned" for="nem">Nem:</label>
+                            <div class="input-container">
+                                <div>
+                                    <input id="field-nem-szuka" name="nem" type="radio" value="szuka">
+                                    <label for="field-nem-szuka"><i class="fa-solid fa-venus"></i> szuka</label>
+                                </div>
+                                <div>
+                                    <input id="field-nem-kan" name="nem" type="radio" value="kan">
+                                    <label for="field-nem-kan"> <i class="fa-solid fa-mars"></i> kan</label>
+                                </div>
                             </div>
-                            <div>
-                                <input id="field-nem-kan" name="nem" type="radio" value="kan">
-                                <label for="field-nem-kan"> <i class="fa-solid fa-mars"> </i>kan</label>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <label class="aligned" for="kep">Kép (url):</label><input id="field-kep" name="kep" type="url">
-                    </fieldset>
-                    <button type="button" onclick="formBekuld()">Rögzít</button>
-                </form>
-            </div>
-        </article>
-        <footer>
-            <a href="https://github.com/zschopper/js_kutya_kartya_tabla_form.git" target="_blank">Copyright&copy; 2023
-                zschopper - Minden jog fenntartva.</a>
-        </footer>
-    </main>
+                        </fieldset>
+                        <fieldset>
+                            <label class="aligned" for="kep">Kép (url):</label><input id="field-kep" name="kep" type="url">
+                        </fieldset>
+                        <button type="button" onclick="formBekuld()">Rögzít</button>
+                    </form>
+                </div>
+            </article>
+            <footer>
+                <a href="https://github.com/zschopper/js_kutya_kartya_tabla_form.git" target="_blank">Copyright&copy; 2023
+                    zschopper - Minden jog fenntartva.</a>
+            </footer>
+        </main>
+    </div>
 </body>
 
 </html>

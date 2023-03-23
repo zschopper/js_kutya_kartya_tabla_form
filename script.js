@@ -32,7 +32,7 @@ function init(event) {
     console.log("init");
 
     kartyakElement = document.querySelector("#cards")
-    tablaElement = document.querySelector("#table table tbody")
+    tablaElement = document.querySelector("#table-container table tbody")
     kirajzolMindent();
     for (const th of document.querySelectorAll("table thead th")) {
         th.addEventListener("click", thClick);
@@ -199,7 +199,7 @@ function rendez() {
     let rows = Array.from(tbody.childNodes);
 
     // a rendezett elemeket újra a tbody-hoz adjuk, mivel egy elem nem lehet két helyen,
-    // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek.
+    // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek
     rows.sort((r1, r2) => {
         // v1 és v2 az összehasonlítandó cellák egyszerű szöveges tartalma (textContent)
         let v1 = r1.childNodes[sortCol].textContent;

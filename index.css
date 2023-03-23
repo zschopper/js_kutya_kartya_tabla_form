@@ -7,11 +7,13 @@
 }
 
 h1 {
+  color: var(--col-pri-shade-1);
   padding: 10px;
   text-align: center;
 }
 
 h2 {
+  color: var(--col-pri-shade-1);
   padding: 20px 0;
 }
 
@@ -19,17 +21,48 @@ h2 {
   --font: Verdana, Geneva, Tahoma, sans-serif;
   --flex-items: 7;
   --flex-gap: 10px;
+
+  --col-button-red: #ca0000;
+  --col-pri-shade-0: #BCA86C;
+  --col-pri-shade-1: #755F1B;
+  --col-pri-shade-2: #8D7018;
+  --col-pri-shade-3: #F6EED6;
+  --col-pri-shade-4: #FFF7E0;
+
+/* *** Secondary color (1): */
+
+  --col-sec-shade-0: #BCB46C;
+  --col-sec-shade-1: #756D1B;
+  --col-sec-shade-2: #8D8218;
+  --col-sec-shade-3: #F6F3D6;
+  --col-sec-shade-4: #FFFCE0;
+
+/* *** Secondary color (2): */
+
+  --col-ter-shade-0: #BC996C;
+  --col-ter-shade-1: #754F1B;
+  --col-ter-shade-2: #8D5B18;
+  --col-ter-shade-3: #F6E8D6;
+  --col-ter-shade-4: #FFF2E0;
+
 }
 
 body {
-  background-color: navy;
+  background-color: var(--col-pri-shade-3);
   font-family: var(--font);
+}
+
+.body-wrap {
+  background-image: url(bg.png);
+  /* opacity: .3; */
 }
 
 main {
   width: 90%;
-  background-color: beige;
+  background-color: var(--col-pri-shade-4);
   margin: 20px auto;
+  border: 3px solid var(--col-ter-shade-2);
+  border-radius: 8px;
 }
 
 article {
@@ -44,7 +77,8 @@ article {
 }
 
 #cards > div {
-  border: 1px solid silver;
+  /* border: 1px solid silver; */
+  border: 3px solid var(--col-sec-shade-1);
   padding: 10px;
   flex: 0 0 auto;
   width: calc(
@@ -61,12 +95,12 @@ article {
 
 #cards img {
   width: 100%;
-  border: 1px solid silver;
+  border: 2px solid var(--col-sec-shade-1);
   margin-top: 10px;
 }
 
 #cards button {
-  background-color: red;
+  background-color: var(--col-button-red);
   color: white;
   font-weight: bold;
   border: 1px solid silver;
@@ -77,48 +111,64 @@ article {
   float: right;
 }
 
-#table table {
+#table-container .table-wrapper {
   width: 100%;
-  border: 1px solid silver;
-  border-collapse: collapse;
+  /* border: 1px solid silver; */
+  border: 2px solid var(--col-sec-shade-1);
   background-color: white;
-}
-
-#table table thead th {
+  border-radius: 5px;
   padding: 5px;
-  background-color: burlywood;
 }
 
-#table table thead th i {
-  float: right; 
+#table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
 }
 
-#table table td {
-  border: 1px solid silver;
+#table-container table thead th {
+  padding: 5px;
+  /* background-color: burlywood; */
+}
+
+#table-container table thead th i {
+  float: right;
+}
+
+#table-container table thead tr {
+  border-bottom: 1px solid #00000030;
+}
+
+#table-container table tbody tr {
+  border-top: 1px solid #00000010;
+}
+
+#table-container table td {
+  /* border: 1px solid silver; */
   padding: 0 20px;
 }
 
-#table th:nth-child(1),
-#table td:nth-child(1) {
+#table-container th:nth-child(1),
+#table-container td:nth-child(1) {
   width: 100px;
 }
 
-#table td:nth-child(3),
-#table td:nth-child(5) {
+#table-container td:nth-child(3),
+#table-container td:nth-child(5) {
   text-align: right;
 }
 
-#table tr:nth-child(even) {
-  background-color: #00000010;
+#table-container tr:nth-child(even) {
+  background-color: #00000005;
 }
 
-#table img {
+#table-container img {
   padding: 2px;
   height: 50px;
 }
 
-#table button {
-  background-color: red;
+#table-container button {
+  background-color: var(--col-button-red);
   color: white;
   border: 1px solid silver;
   font-family: var(--font);
@@ -129,6 +179,8 @@ article {
 #table-n-form {
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -143,7 +195,8 @@ article {
 form {
   max-width: 600px;
   background-color: white;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
+  border: 2px solid var(--col-sec-shade-1);
   border-radius: 3px;
   padding: 10px;
 }
@@ -153,22 +206,20 @@ form label.aligned {
   display: inline-block;
   text-align: right;
   padding: 0 10px;
-  /* border: 1px solid green; */
 }
 
 form input[type="text"],
 form input[type="url"],
 form input[type="number"],
 div.input-container {
-  padding: 3px;
+  padding: 7px;
   width: calc(100% - 110px);
-  /* border: 1px solid red; */
   display: inline-block;
 }
 
 fieldset {
     border: 0 none;
-    margin: 8px;
+    margin-bottom: 20px;
 }
 
 form button {
@@ -184,11 +235,11 @@ form button {
 }
 
 .fa-venus  {
-    color: #ff7189;
+    color: #ff647e;
 }
 
 .fa-mars {
-    color: rgb(72, 193, 193);
+    color: #338ec6;
 }
 footer {
   text-align: center;
@@ -198,3 +249,4 @@ footer {
 footer a {
   text-decoration: none;
 }
+
