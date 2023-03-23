@@ -140,9 +140,10 @@ function formBekuld(event) {
 }
 
 /**
+ * Tábla fejlécre kattintást kezelő esemény.
  *
- * @param {*} event
- * @returns
+ * @param {Event} event
+ *
  */
 function thClick(event) {
     let target = event.target;
@@ -151,13 +152,17 @@ function thClick(event) {
     // hányadik oszlopra kattintottunk (0-tól számolódik)
     let idx = Array.prototype.indexOf.call(parent.children, target);
 
-    // csak "név", "kor" és a "nem" rendezhető
+    // Csak "név", "kor" és a "nem" rendezhető.
+    // Ha másik oszlop küldte az eseményt, simán befejezzük a futást,
+    // nem változtatunk semmit.
+
     if (![1, 2, 3].includes(idx)) {
         return;
     }
 
     if (sortCol >= 0) {
-        // már rendeztünk korábban, töröljük a rendezést jelző osztályt az EREDETI oszlop <i> tag-jéről
+        // Már rendeztünk korábban, tehát törölni kell a rendezést jelző osztályt
+        // az EREDETI oszlop <i> tag-jéről
         let elem = parent.children[sortCol].querySelector("i")
         elem.classList.remove(SORT_ASC_CLASS);
         elem.classList.remove(SORT_DESC_CLASS);
@@ -186,13 +191,15 @@ function thClick(event) {
 }
 
 function rendez() {
+    // a táblázat törzsében lévő sorokat (tr) rendezzük, és adjuk újra hozzá
+    // rendezetten a tbody-hoz, ezzel rendezetts lesz a táblázat.
     let tbody = document.querySelector("tbody");
     // betesszük a tbody gyerekeit (a sorokat - tr elemek)) egy tömbbe
 
     let rows = Array.from(tbody.childNodes);
-    // a rendezett elemeket újra a tbody-hoz adjuk,
-    // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek
 
+    // a rendezett elemeket újra a tbody-hoz adjuk, mivel egy elem nem lehet két helyen,
+    // ezzel eltávolítódik a régi, az újak viszont sorrendben lesznek.
     rows.sort((r1, r2) => {
         // v1 és v2 az összehasonlítandó cellák egyszerű szöveges tartalma (textContent)
         let v1 = r1.childNodes[sortCol].textContent;
