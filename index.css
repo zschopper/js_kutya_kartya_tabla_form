@@ -127,15 +127,62 @@ article {
 
 #table-container table thead th {
   padding: 5px;
-  /* background-color: burlywood; */
-}
-
-#table-container table thead th i {
-  float: right;
-}
-
-#table-container table thead tr {
   border-bottom: 1px solid #00000030;
+}
+
+
+#table-container table thead > tr > th[aria-sort],
+#table-container table thead > tr > th[aria-sort="ascending"],
+#table-container table thead > tr > th[aria-sort="descending"] {
+  padding-right: 30px;
+}
+
+#table-container table thead > tr > th:active {
+  outline: 0;
+}
+
+#table-container table thead [aria-sort],
+#table-container table thead [aria-sort="ascending"],
+#table-container table thead [aria-sort="descending"] {
+  cursor: pointer;
+  position: relative;
+}
+
+#table-container table thead [aria-sort]:after,
+#table-container table thead [aria-sort]:before,
+#table-container table thead [aria-sort="ascending"]:after,
+#table-container table thead [aria-sort="ascending"]:before,
+#table-container table thead [aria-sort="descending"]:after,
+#table-container table thead [aria-sort="descending"]:before {
+  position: absolute;
+  bottom: 0.5em;
+  display: block;
+  opacity: 0.3;
+}
+
+#table-container table thead [aria-sort]:before,
+#table-container table thead [aria-sort="ascending"]:before,
+#table-container table thead [aria-sort="descending"]:before {
+  right: 1em;
+  content: "\f0de";
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
+}
+
+#table-container table thead [aria-sort]:after,
+#table-container table thead [aria-sort="ascending"]:after,
+#table-container table thead [aria-sort="descending"]:after {
+  content: "\f0dd";
+  font-family: "Font Awesome\ 5 Free";
+  font-weight: 900;
+  right: 16px;
+  font-size: 1rem;
+}
+
+#table-container table thead [aria-sort="ascending"]:before,
+#table-container table thead [aria-sort="descending"]:after {
+  opacity: 1;
 }
 
 #table-container table tbody tr {
@@ -247,58 +294,4 @@ footer {
 
 footer a {
   text-decoration: none;
-}
-
-thead > tr > th[aria-sort],
-thead > tr > th[aria-sort="ascending"],
-thead > tr > th[aria-sort="descending"] {
-  padding-right: 30px;
-}
-
-thead > tr > th:active {
-  outline: 0;
-}
-
-thead [aria-sort],
-thead [aria-sort="ascending"],
-thead [aria-sort="descending"] {
-  cursor: pointer;
-  position: relative;
-}
-
-thead [aria-sort]:after,
-thead [aria-sort]:before,
-thead [aria-sort="ascending"]:after,
-thead [aria-sort="ascending"]:before,
-thead [aria-sort="descending"]:after,
-thead [aria-sort="descending"]:before {
-  position: absolute;
-  bottom: 0.5em;
-  display: block;
-  opacity: 0.3;
-}
-
-thead [aria-sort]:before,
-thead [aria-sort="ascending"]:before,
-thead [aria-sort="descending"]:before {
-  right: 1em;
-  content: "\f0de";
-  font-family: "Font Awesome\ 5 Free";
-  font-weight: 900;
-  font-size: 1rem;
-}
-
-thead [aria-sort]:after,
-thead [aria-sort="ascending"]:after,
-thead [aria-sort="descending"]:after {
-  content: "\f0dd";
-  font-family: "Font Awesome\ 5 Free";
-  font-weight: 900;
-  right: 16px;
-  font-size: 1rem;
-}
-
-thead [aria-sort="ascending"]:before,
-thead [aria-sort="descending"]:after {
-  opacity: 1;
 }
