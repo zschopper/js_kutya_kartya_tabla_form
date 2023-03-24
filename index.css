@@ -6,21 +6,11 @@
   margin: 0;
 }
 
-h1 {
-  color: var(--col-pri-shade-1);
-  padding: 10px;
-  text-align: center;
-}
-
-h2 {
-  color: var(--col-pri-shade-1);
-  padding: 20px 0;
-}
-
 :root {
-  --font: Verdana, Geneva, Tahoma, sans-serif;
   --flex-items: 7;
   --flex-gap: 10px;
+  --font-heading: 'Delicious Handrawn', cursive;
+  --font: 'Alkatra', cursive;
 
   --col-button-red: #ca0000;
   --col-pri-shade-0: #bca86c;
@@ -47,13 +37,12 @@ h2 {
 }
 
 body {
-  background-color: var(--col-pri-shade-3);
+  background-color: var(--col-ter-shade-2);
   font-family: var(--font);
 }
 
 .body-wrap {
   background-image: url(bg.png);
-  /* opacity: .3; */
 }
 
 main {
@@ -62,6 +51,19 @@ main {
   margin: 20px auto;
   border: 3px solid var(--col-ter-shade-2);
   border-radius: 8px;
+}
+
+h1 {
+  color: var(--col-pri-shade-1);
+  padding: 10px;
+  text-align: center;
+  font-family: var(--font-heading);
+}
+
+h2 {
+  color: var(--col-pri-shade-1);
+  padding: 20px 0;
+  font-family: var(--font-heading);
 }
 
 article {
@@ -76,7 +78,6 @@ article {
 }
 
 #cards > div {
-  /* border: 1px solid silver; */
   border: 3px solid var(--col-sec-shade-1);
   padding: 10px;
   flex: 0 0 auto;
@@ -112,7 +113,6 @@ article {
 
 #table-container .table-wrapper {
   width: 100%;
-  /* border: 1px solid silver; */
   border: 2px solid var(--col-sec-shade-1);
   background-color: white;
   border-radius: 5px;
@@ -190,7 +190,6 @@ article {
 }
 
 #table-container table td {
-  /* border: 1px solid silver; */
   padding: 0 20px;
 }
 
@@ -241,7 +240,6 @@ article {
 form {
   max-width: 600px;
   background-color: white;
-  /* border: 1px solid grey; */
   border: 2px solid var(--col-sec-shade-1);
   border-radius: 3px;
   padding: 10px;
@@ -294,4 +292,5 @@ footer {
 
 footer a {
   text-decoration: none;
+  color: var(--col-pri-shade-1);
 }
