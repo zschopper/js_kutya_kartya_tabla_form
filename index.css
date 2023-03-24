@@ -105,6 +105,7 @@ h2 {
   margin-top: 10px;
   font-family: var(--font);
   float: right;
+  cursor: pointer;
 }
 
 #cards button:hover {
@@ -218,6 +219,7 @@ h2 {
   font-family: var(--font);
   border-radius: 3px;
   padding: 5px 15px;
+  cursor: pointer;
 }
 
 #table-container button:hover {
@@ -286,6 +288,7 @@ form button {
   padding: 10px;
   display: block;
   width: 100%;
+  cursor: pointer;
 }
 
 .fa-venus {
