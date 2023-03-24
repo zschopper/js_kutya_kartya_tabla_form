@@ -307,3 +307,7 @@ footer a {
   text-decoration: none;
   color: var(--col-pri-shade-1);
 }
+
+footer a:hover {
+  text-decoration: dotted;
+}
