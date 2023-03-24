@@ -21,6 +21,10 @@ GitHub Pages linket kérek!
   - ~~Form~~
   - ~~Elem hozzáadás a listához~~
   - ~~Kártyák/táblázat frissítése~~
-- Rendezés
+- ~~Rendezés~~
   - ~~Eddig rögzített táblasorok rendezése~~
-  - Felvitelnél rendezett beszúrás
+  - ~~Felvitelnél rendezett beszúrás~~
+
+## Lehetséges fejlesztések
+
+  - Új elem felvitelnél, ha a tábla rendezett, akkor a helyére szúrni be az új elemet, és nem a táblát újrarendezni.

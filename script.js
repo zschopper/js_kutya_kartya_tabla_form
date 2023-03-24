@@ -133,8 +133,10 @@ function formBekuld(event) {
             kep = "https://placedog.net/500/500/" + szam;
         }
         let kutya = { nev: nev, kor: kor, nem: nem, kep: kep };
-        // lista.push(kutya);
         kirajzol(kutya);
+
+        // Todo: rendezés helyett a rendezettség szerinti helyre kéne tenni az új elemet a táblázatban.
+        rendez();
     }
 }
 
