@@ -14,6 +14,11 @@ let lista = [
 
 const SORT_ASC_CLASS = "fa-sort-up";
 const SORT_DESC_CLASS = "fa-sort-down";
+/*
+
+<i class="fa-duotone fa-sort-up"></i>
+*/
+
 
 let kartyakElement;
 let tablaElement;
@@ -21,12 +26,6 @@ let tablaElement;
 // A számláló (counter) minden kutya hozzáadásánál növekszik,
 // egyedi sorszámot generálva az tábla sornak/kártyának.
 let counter = 0;
-
-// A rendezés oszlop-indexe. -1, ha nincs rendezés.
-let sortCol = -1;
-
-// rendezés iránya: 1 ha növekvő a sorrend, -1 ha csökkenő
-let sortDir = 0;
 
 function init(event) {
     console.log("init");
@@ -159,33 +158,20 @@ function thClick(event) {
     if (![1, 2, 3].includes(idx)) {
         return;
     }
+    let sorted = document.querySelector('[aria-sort]');
 
-    if (sortCol >= 0) {
-        // Már rendeztünk korábban, tehát törölni kell a rendezést jelző osztályt
-        // az EREDETI oszlop <i> tag-jéről
-        let elem = parent.children[sortCol].querySelector("i")
-        elem.classList.remove(SORT_ASC_CLASS);
-        elem.classList.remove(SORT_DESC_CLASS);
-    }
-
-    if (idx == sortCol) {
-        // ha a már rendezett oszlopra kattintunk, a rendezés irányát megfordítjuk
-        sortDir *= -1;
+    if (sorted) {
+        if (sorted == target) {
+            if (sorted.ariaSort == 'ascending')
+                target.ariaSort = 'descending';
+            else if (sorted.ariaSort == 'descending')
+                target.ariaSort = 'ascending';
+        } else {
+            sorted.removeAttribute('aria-sort');
+            target.ariaSort = 'ascending';
+        }
     } else {
-        // ha nem rendezett oszlopra kattintottunk, a rendezési beállításokat tartalmazó
-        // változókat átállítjuk a másik oszlopra
-        sortCol = idx;
-        sortDir = 1;
-    }
-
-    // Itt az ÚJONNAN beállított rendezés szerint átállítjuk a rendezettség jelző nyilakat.
-    let elem = target.querySelector("i")
-    if (sortDir == 1) {
-        elem.classList.add(SORT_ASC_CLASS);
-        elem.classList.remove(SORT_DESC_CLASS);
-    } else {
-        elem.classList.remove(SORT_ASC_CLASS);
-        elem.classList.add(SORT_DESC_CLASS);
+        target.ariaSort = 'ascending';
     }
     rendez();
 }
@@ -194,6 +180,10 @@ function rendez() {
     // a táblázat törzsében lévő sorokat (tr) rendezzük, és adjuk újra hozzá
     // rendezetten a tbody-hoz, ezzel rendezetts lesz a táblázat.
     let tbody = document.querySelector("tbody");
+    let sorted = document.querySelector('[aria-sort]');
+    let sortCol = Array.prototype.indexOf.call(sorted.parentNode.children, sorted);
+    let sortDir = sorted.ariaSort == 'ascending'? 1: -1;
+
     // betesszük a tbody gyerekeit (a sorokat - tr elemek)) egy tömbbe
 
     let rows = Array.from(tbody.childNodes);
